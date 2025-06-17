@@ -1,7 +1,7 @@
-import CharacterList from './components/CharacterList'
+import CharacterList from "./components/CharacterList";
 
 function App() {
-  return <CharacterList />
+  return <CharacterList />;
 }
 
-export default App
+export default App;
