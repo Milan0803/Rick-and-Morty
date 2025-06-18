@@ -11,6 +11,7 @@ const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [status, setStatus] = useState("");
 
+  // Fetch characters whenever searchTerm, page, or status changes
   useEffect(() => {
     fetchCharacters();
   }, [searchTerm, page, status]);
@@ -23,6 +24,8 @@ const App = () => {
 
       const newChars: ICharacter[] = res.data.results || [];
       setCharacters((prev) => (page === 1 ? newChars : [...prev, ...newChars]));
+
+      // Check if there is a next page
       hasMore.current = !!res.data.info.next;
     } catch (error) {
       setCharacters([]);
@@ -33,6 +36,8 @@ const App = () => {
   return (
     <div className="container mt-4 mx-auto">
       <h2 className="text-center mb-4">Rick and Morty Characters</h2>
+
+      {/* Search input field */}
       <input
         type="text"
         className="form-control mb-4"
@@ -43,6 +48,8 @@ const App = () => {
           setPage(1);
         }}
       />
+
+      {/* Status filter */}
       <div className="d-flex mb-3">
         <h5 className="me-3">Character status:</h5>
         <div className="d-flex">
@@ -109,6 +116,8 @@ const App = () => {
           </div>
         </div>
       </div>
+
+      {/* Infinite scroll displaying characters */}
       {characters.length > 0 && (
         <InfiniteScroll
           dataLength={characters.length}
@@ -129,6 +138,8 @@ const App = () => {
           ))}
         </InfiniteScroll>
       )}
+
+      {/* Message when no characters are found */}
       {characters.length === 0 && (
         <div className="text-center">
           <h4>No characters found</h4>

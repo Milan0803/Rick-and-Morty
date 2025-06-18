@@ -1,9 +1,11 @@
+// Interface defining the expected props for a character item
 interface ICharacterListProps {
   image: string;
   name: string;
   status: string;
 }
 
+// Rick and Morty character card
 function CharacterItem(props: ICharacterListProps) {
   const { image, name, status } = props;
 
